@@ -1,4 +1,4 @@
 nixfiles
 ========
 
-Dan Baber's *nix Dot Files
+Dan Baber's *NIX Dot Files and Scripts
