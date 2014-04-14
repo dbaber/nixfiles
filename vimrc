@@ -96,7 +96,7 @@ autocmd FileType vimrc,perl,c,cpp,python,ruby,java autocmd BufWritePre <buffer> 
 "map <F5> :setlocal makeprg=perl\ -c\ %\|make<CR>
 "map <F6> :setlocal makeprg=perl\ %\|make<CR>
 :au Filetype perl nmap ,c :!perl -Ilib -c %<CR>:!podchecker %<CR>:!perlcritic --profile `git rev-parse --show-toplevel`/perlcriticrc %<CR>
-:au Filetype perl nmap ,r :!perl -Ilib%<CR>
+:au Filetype perl nmap ,r :!perl -Ilib %<CR>
 
 " Tidy selected lines (or entire file) with ,t:
 "nnoremap <silent> ,t :%!perltidy -q<CR>
