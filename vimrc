@@ -120,3 +120,7 @@ au FileType gitcommit set tw=72
 " create pastie
 nnoremap ,pb :!curl -s -F data=@% http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
 vnoremap ,pb <esc>:'<,'>:w !curl -s -F data=@- http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
+
+" Comment/uncomment blocks
+vnoremap ,cb :s/^/#/gi<CR>:noh<CR>
+vnoremap ,ub :s/^#//gi<CR>:noh<CR>
