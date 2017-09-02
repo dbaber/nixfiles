@@ -56,8 +56,8 @@ set pastetoggle=<F2>
 
 " Mappings/key bindings for fix-tables
 "au BufNewFile,BufRead *.www set ft=flexwiki equalprg=~/src/blackjack/script/fix-tables
-au BufNewFile,BufRead *.www set ft=stwiki equalprg=~/src/blackjack/script/fix-tables
-au BufNewFile,BufRead *.www map <c-J> mq=ip`q
+"au BufNewFile,BufRead *.www set ft=stwiki equalprg=~/src/blackjack/script/fix-tables
+"au BufNewFile,BufRead *.www map <c-J> mq=ip`q
 
 " Format JSON
 "map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
@@ -116,6 +116,11 @@ autocmd FileType vimrc,perl,c,cpp,python,ruby,java autocmd BufWritePre <buffer> 
 
 " Wrap git comments to 72 chracters
 au FileType gitcommit set tw=72
+
+" Python key bindings
+:au Filetype python nnoremap ,t :let t = winsaveview()<CR>:%!autopep8 -<CR>:w<CR>:call winrestview(t)<CR>
+:au Filetype python vnoremap ,t <esc>:'<,'>!autopep8 -<CR>:w<CR>
+:au Filetype python nmap ,c :!flake8 --config `git rev-parse --show-toplevel`/tox.ini --statistics --count %<CR>
 
 " create pastie
 nnoremap ,pb :!curl -s -F data=@% http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
