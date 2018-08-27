@@ -25,7 +25,8 @@ set showmatch       " Highlight matching parens, brackets, braces, etc
 "set shell=/bin/bash shellcmdflag=-ic " Set the shell to an interactive bash shell so we get aliases, etc.
 set background=dark " Set the colors for a dark background
 
-syntax on           " Turn on synatx highlighting
+execute pathogen#infect()
+syntax on                 " Turn on synatx highlighting
 filetype plugin indent on " Turn other nice features on
 
 " Folding settings
