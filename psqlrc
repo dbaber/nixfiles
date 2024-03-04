@@ -5,7 +5,7 @@
 \timing on
 
 -- Print null fields as NULL
-\pset null 'NULL'
+\pset null '[NULL]'
 
 -- Set the command history file names for each database
 \set HISTFILE ~/.psql_history- :DBNAME
