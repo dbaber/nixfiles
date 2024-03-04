@@ -15,3 +15,4 @@ au! BufRead,BufNewFile *.json setfiletype json
 "augroup END
 
 au BufNewFile,BufRead *.www setf perl
+autocmd BufNewFile,BufRead *.git/COMMIT_EDITMSG set ft=gitcommit
