@@ -11,7 +11,7 @@
 \set HISTFILE ~/.psql_history- :DBNAME
 \set HISTSIZE 2000
 
--- Show user, host, data, abd DB in prompt
+-- Show user, host, data, and DB in prompt
 --\set PROMPT1 '(%n@%M:%>) [%/] > '
 \set PROMPT1 '(%n@%M:%>) %`date +%H:%M:%S` [%/] \n%x%# '
 \set PROMPT2 ''
