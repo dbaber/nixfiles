@@ -12,7 +12,7 @@ for CONF in $CONFS; do
   LINK=$(echo $CONF | sed '/^\./! s/^/./g')
 
   #if [ ! -e "$(readlink "$HOME/${LINK}")" ]; then
-  ln -sfv $NIXFILES/${CONF} "$HOME/${LINK}"
+  ln -sfvh $NIXFILES/${CONF} "$HOME/${LINK}"
   #fi
 done
 
