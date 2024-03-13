@@ -1,8 +1,53 @@
-" File: .vimrc - Vim startup file
-" Author: Daniel Baber
-" Date: : Sat Aug 25 01:19:58 CDT 2007
-" Last Change:: Mon Mar 28 08:49:00 CST 2011
+"
+" VIM-PLUG
+"
 
+""" Automatic installation """
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+""" VIM Plugins """
+call plug#begin()
+
+" FZF - fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" PLantUML
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'aklt/plantuml-syntax'
+
+" Slimv - Lisp in Vim
+Plug 'kovisoft/slimv'
+
+" Cucumber syntax for VIM
+Plug 'tpope/vim-cucumber'
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+
+" VIM LSP
+Plug 'prabirshrestha/vim-lsp'
+
+" Perl
+Plug 'vim-perl/vim-perl'
+
+" TODO: Make a fork of this as I do have it modified
+" VIM Swagger Preview
+Plug 'xavierchow/vim-swagger-preview'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+
+call plug#end()
+
+"
+" Basic Settings
+"
 let mapleader = "," " map leader to comma
 set timeoutlen=500  " Set timeout length to 500 ms"
 set nocompatible    " Forget about vi compatibility
@@ -26,8 +71,9 @@ set number          " Display line number, useful for porgamming
 set showmatch       " Highlight matching parens, brackets, braces, etc
 "set shell=/bin/bash shellcmdflag=-ic " Set the shell to an interactive bash shell so we get aliases, etc.
 set background=dark " Set the colors for a dark background
+set hlsearch
 
-" BEGIN: Fix diff colors in Vim to be like the CLI diffs
+" Fix diff colors in Vim to be like the CLI diffs
 function! MyHighlights() abort
     highlight diffAdded ctermfg=2 guifg=#67c12c
     highlight diffRemoved ctermfg=1 guifg=#b82e19
@@ -38,10 +84,10 @@ augroup MyColors
 augroup END
 
 colorscheme default
-" END: Fix diff colors in Vim to be like the CLI diffs
+" END Fix diff colors in Vim to be like the CLI diffsff
+
 
 let perl_sub_signatures = 1
-execute pathogen#infect()
 syntax on                 " Turn on synatx highlighting
 filetype plugin indent on " Turn other nice features on
 
@@ -169,9 +215,7 @@ autocmd FileType vimrc,perl,c,cpp,python,ruby,java,elixir autocmd BufWritePre <b
 :au Filetype perl,stwiki map ,p :w<CR>:!~/src/scripts/dc_wrapper.sh "script -c 'HARNESS_ACTIVE=1 prove -lvmfo %' /tmp/last-prove.txt && less -R -F +G /tmp/last-prove.txt"<CR>
 :au Filetype perl,stwiki map ,lp :!~/src/scripts/dc_wrapper.sh "less -R /tmp/last-prove.txt"<CR>
 
-
-
-
+" Validate XML files with <leader>v using xmllint
 :au Filetype xml nmap ,v :!xmllint --relaxng ~/src/cadillac/lib/Cadillac/Devel/Doc/internal/schema.rng %<CR>
 
 " Wrap git comments to 72 chracters
@@ -189,13 +233,17 @@ au FileType gitcommit set tw=72
 ":au Filetype elixir vnoremap ,t <esc>:'<,'>!mix format %<CR>:w<CR>
 ":au Filetype elixir nmap ,c :!elixirc %<CR>
 
-" create pastie
-nnoremap ,pb :!curl -s -F data=@% http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
-vnoremap ,pb <esc>:'<,'>:w !curl -s -F data=@- http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
+" Linux create pastie and copy to clipboard - pastie is defunct, RIP Corvisa
+"nnoremap ,pb :!curl -s -F data=@% http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
+"vnoremap ,pb <esc>:'<,'>:w !curl -s -F data=@- http://pastie.it.corp/ \| xclip -selection clipboard; xclip -selection clipboard -o<CR>
+
+" Use MacOS clipboard
+nnoremap <leader>pb :%w !pbcopy<CR>
+vnoremap <leader>pb <esc>:'<,'>:w !pbcopy<CR>
 
 " Comment/uncomment blocks
-vnoremap ,cb :s/^/#/gi<CR>:noh<CR>
-vnoremap ,ub :s/^#//gi<CR>:noh<CR>
+vnoremap <leader>cb :s/^/#/gi<CR>:noh<CR>
+vnoremap <leader>ub :s/^#//gi<CR>:noh<CR>
 
 " fzf
 noremap <silent> <leader>o :Files<CR>
@@ -207,13 +255,13 @@ tnoremap <C-b> <c-\><c-n>
 
 " Use vim-lsp and standardrb for Ruby. See https://github.com/standardrb/standard/wiki/IDE:-vim
 " Use standard if available
-if executable('standardrb')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'standardrb',
-        \ 'cmd': ['standardrb', '--lsp'],
-        \ 'allowlist': ['ruby'],
-        \ })
-endif
+"if executable('standardrb')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'standardrb',
+"        \ 'cmd': ['standardrb', '--lsp'],
+"        \ 'allowlist': ['ruby'],
+"        \ })
+"endif
 
 " Edit vimr configuration file
 nnoremap <Leader>ve :e $MYVIMRC<CR>

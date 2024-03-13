@@ -1,6 +1,5 @@
 vim/.netrwhist
 vim/autoload
-vim/bundle
+vim/plugged
 vim/pack
 vim/view
-vim/vim-slime
