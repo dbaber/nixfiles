@@ -3,10 +3,17 @@
 set -euo pipefail
 
 # Synlink conf files if they don't exist
-SETUP=$(basename $0)
-NIXFILES=${HOME}/src/nixfiles
-CONFS=$(ls -1 | egrep -v "README.md|${SETUP}")
-
+NIXFILES="${HOME}/src/nixfiles"
+CONFS=" \
+	bash_aliases \
+	bash_cadillac \
+	bashrc \
+	inputrc \
+	profile \
+	psqlrc \
+	vim \
+	vimrc \
+"
 for CONF in $CONFS; do
   #LINK=$(echo $CONF | sed 's/^dot_/./g' | sed '/^\./! s/^/./g')
   LINK=$(echo $CONF | sed '/^\./! s/^/./g')
