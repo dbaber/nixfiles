@@ -13,7 +13,7 @@ alias llart='ls -lart'
 #alias irc='screen -t IRC ssh -t gandalf screen -RAD IRC'
 #alias irc-remote='screen -t IRC ssh -t gandalf.libentech.com screen -RAD IRC'
 #alias samwise='screen -t samwise ssh root@samwise.libentech.com'
-alias saturn='screen -t saturn ssh saturn.chaillet.net'
+#alias saturn='screen -t saturn ssh saturn.chaillet.net'
 
 # Corvisa Aliases
 #alias djtut='. ~/venv/mysite/bin/activate && cd ~/src/mysite'
@@ -39,36 +39,35 @@ alias psql='PAGER="less -S" psql'
 
 #alias lxdev='ssh -t dbaber@lxdev.corp.xome.com'
 
-# Perlbrew - NOTE: It used to work to just `perlbrew use` things but now we have to `switch` things
+# Perlbrew
 alias pb='perlbrew'
 alias pls='~/perl5/perlbrew/bin/perlbrew list'
-alias pl='perlbrew switch perl-5.12.4'
-alias pl2='perlbrew switch perl-5.24.0'
-#alias dz='perlbrew switch perl-5.12.4@_dzil_builder'
-alias dev='perlbrew switch perl-5.12.4@dev'
-alias dev2='perlbrew switch perl-5.24.0@dev'
-alias bj='cd ~/src/blackjack && perlbrew switch perl-5.12.4@blackjack'
-alias bjconf='cd ~/src/configs && perlbrew switch perl-5.12.4@blackjack'
-alias qcr='cd ~/src/qcr && perlbrew switch perl-5.12.4@qcr'
-alias qcrconf='cd ~/src/configsqcr && perlbrew switch perl-5.12.4@qcr'
-alias sldd='cd ~/src/sldockerdev && perlbrew switch perl-5.12.4@blackjack'
-alias sl='cd ~/src/slingshot && perlbrew switch perl-5.24.0@slingshot'
-alias idp='cd ~/src/idp && perlbrew switch perl-5.24.0@idp'
-#alias confs='cd ~/src/configs'
-#alias cr='cd ~/src/crimson && perlbrew switch perl-5.12.4@crimson'
+alias pl='perlbrew use perl-5.12.4'
+alias pl2='perlbrew use perl-5.24.0'
+#alias dz='perlbrew use perl-5.12.4@_dzil_builder'
+alias dev='perlbrew use perl-5.12.4@devel'
+alias dev2='perlbrew use perl-5.24.0@dev'
+alias bj='cd ~/src/blackjack && perlbrew use perl-5.12.4@blackjack'
+alias bjconf='cd ~/src/configs && perlbrew use perl-5.12.4@blackjack'
+alias qcr='cd ~/src/qcr && perlbrew use perl-5.12.4@qcr'
+alias qcrconf='cd ~/src/configsqcr && perlbrew use perl-5.12.4@qcr'
+alias sldd='cd ~/src/sldockerdev && perlbrew use perl-5.12.4@blackjack'
+alias sl='cd ~/src/slingshot && perlbrew use perl-5.24.0@slingshot'
+alias idp='cd ~/src/idp && perlbrew use perl-5.24.0@idp'
+#alias cr='cd ~/src/crimson && perlbrew use perl-5.12.4@crimson'
 #alias cir='cd ~/src/cirrus'
 #alias st='cd ~/src/stratus'
-alias th='cd ~/src/thunderdome && perlbrew switch perl-5.12.4@blackjack'
-alias ca='cd ~/src/cadillac && perlbrew switch perl-5.12.4@cadillac'
-alias el='cd ~/src/cadillac/t/apps/Eldorado && perlbrew switch perl-5.12.4@cadillac'
+alias th='cd ~/src/thunderdome && perlbrew use perl-5.12.4@thunderdome'
+alias ca='cd ~/src/cadillac && perlbrew use perl-5.12.4@cadillac'
+alias el='cd ~/src/cadillac/t/apps/Eldorado && perlbrew use perl-5.12.4@cadillac'
 alias ans='cd ~/src/XG_ansible'
 
 # New mojolicious
-alias mojo='cd ~/src/mojo && perlbrew switch perl-5.36.1@mojo'
-alias myapp='cd ~/src/myapp && perlbrew switch perl-5.36.1@myapp'
+alias mojo='cd ~/src/mojo && perlbrew use perl-5.36.1@mojo'
+alias myapp='cd ~/src/myapp && perlbrew use perl-5.36.1@myapp'
 
-#alias ker='cd ~/src/kermes && perlbrew switch perl-5.12.4@kermes'
-#alias co='cd ~/src/corvisa-one-perl && perlbrew switch perl-5.12.4@corvisa_one'
+#alias ker='cd ~/src/kermes && perlbrew use perl-5.12.4@kermes'
+#alias co='cd ~/src/corvisa-one-perl && perlbrew use perl-5.12.4@corvisa_one'
 #alias runbj='screen -t bj-server ~/bin/bj-server.sh'
 #alias runbj-tst='screen -t bj-server-tst ~/bin/bj-server.sh testing'
 #alias runbj-nd='screen -t bj-server-nd ~/bin/bj-server.sh nodebug'
@@ -153,6 +152,26 @@ alias ctagit="catgs --append=no -f ./.git/tags --recurse --totals --exclude=blib
 alias cr='chruby'
 #alias terraspace='chruby ruby-3.2.2 && bundle exec terraspace'
 
+# Domain Storytelling diagram web app
 alias egon='open ~/bin/domain-story-modeler-1.5.0/index.html'
+
+# Command-line Markdown viewers
 alias fm='frogmouth'
 alias gl='glow -s dark -p'
+
+# Python Poetry deps manager
+alias pty=poetry
+
+# AWS Scripts
+alias ls-ec2s='AWS_PROFILE=legacy ls-ec2s'
+
+# Ansible CLI tools
+alias ansible='AWS_PROFILE=legacy ansible'
+alias ansible-config='AWS_PROFILE=legacy ansible-config'
+alias ansible-console='AWS_PROFILE=legacy ansible-console'
+alias ansible-doc='AWS_PROFILE=legacy ansible-doc'
+alias ansible-galaxy='AWS_PROFILE=legacy ansible-galaxy'
+alias ansible-inventory='AWS_PROFILE=legacy ansible-inventory'
+alias ansible-playbook='AWS_PROFILE=legacy ansible-playbook'
+alias ansible-pull='AWS_PROFILE=legacy ansible-pull'
+alias ansible-vault='AWS_PROFILE=legacy ansible-vault'
