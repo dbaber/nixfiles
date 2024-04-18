@@ -161,16 +161,27 @@ fi
 # Git bash completion form Homebrew
 [ -r "/usr/local/etc/profile.d/bash_completion.sh" ] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-# Docker completion
-if [ -f /etc/bash_completion.d/docker ]; then
-    . /etc/bash_completion.d/docker
-fi
+# Local bash completion
+#for bcfile in ~/.bash_completion.d/* ; do
+#  [ -f "$bcfile" ] && . $bcfile
+#done
 
-# Docker compose completion
-if [ -f /etc/bash_completion.d/docker-compose ]; then
-    . /etc/bash_completion.d/docker-compose
-fi
+# Homebrew bash completion files
+#for bcfile in /usr/local/etc/bash_completion.d/* ; do
+#  [ -f "$bcfile" ] && . $bcfile
+#done
 
+## Docker completion
+#if [ -f /etc/bash_completion.d/docker ]; then
+#    . /etc/bash_completion.d/docker
+#fi
+
+## Docker compose completion
+#if [ -f /etc/bash_completion.d/docker-compose ]; then
+#    . /etc/bash_completion.d/docker-compose
+#fi
+
+# Perlbrew ENV variables
 #if [ -f /opt/perlbrew/etc/bashrc ]; then
 #	. /opt/perlbrew/etc/bashrc
 #fi
@@ -185,7 +196,7 @@ export BASH_ENV=~/.bashrc
 
 #export PATH=$HOME/src/cadillac/bin:$PATH
 #export PATH="$HOME/.local/bin:$PATH:$HOME/src/scripts:$HOME/src/dev/bin"; # linux only
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$HOME/Library/Python/3.9/bin:$HOME/src/scripts:$HOME/src/dev/bin:$HOME/src/cadillac/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$HOME/src/scripts:$PATH"
 
 # Graham's Git Stuff
 #if [ -f ~/.bashrc-git ]; then
@@ -285,15 +296,11 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 # Terraspace command completion
 #source /Users/dbaber/.gem/ruby/3.2.2/gems/terraspace-2.2.4/lib/terraspace/cli/completer/script.sh
 
-# asdf
-#. "$HOME/.asdf/asdf.sh"
-#. "$HOME/.asdf/completions/asdf.bash"
-
 # Ruby irb - Turn off autocomplete
 export IRB_USE_AUTOCOMPLETE=false
 
 # Remap capslock to 'n' key
-hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000011}]}' >/dev/null 2>&1
+#hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000011}]}' >/dev/null 2>&1
 
 # Created by `pipx` on 2024-02-10 15:34:43
 export PATH="$PATH:/Users/dbaber/.local/bin"
