@@ -196,7 +196,7 @@ export BASH_ENV=~/.bashrc
 
 #export PATH=$HOME/src/cadillac/bin:$PATH
 #export PATH="$HOME/.local/bin:$PATH:$HOME/src/scripts:$HOME/src/dev/bin"; # linux only
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$HOME/src/scripts:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$HOME/src/scripts:$PATH"
 
 # Graham's Git Stuff
 #if [ -f ~/.bashrc-git ]; then
@@ -303,5 +303,5 @@ export IRB_USE_AUTOCOMPLETE=false
 #hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000011}]}' >/dev/null 2>&1
 
 # Created by `pipx` on 2024-02-10 15:34:43
-export PATH="$PATH:/Users/dbaber/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 eval "$(register-python-argcomplete pipx)"
