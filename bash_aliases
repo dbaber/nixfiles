@@ -85,6 +85,7 @@ alias myapp='cd ~/src/myapp && perlbrew use perl-5.36.1@myapp'
 alias lxor='. ~/venvs/lx_ordering/bin/activate && cd ~/src/lx_ordering'
 alias lxasst='. ~/venvs/lx_assistant/bin/activate && cd ~/src/lx_assistant'
 alias lxpay='. ~/vens/lx_pay/bin/activate && cd ~/src/lx_pay'
+alias plutus='cd ~/src/plutus &&source .venv/bin/activate'
 
 #alias runwww='cd ~/src/blackjack && BLACKJACK_RUNNING=1 ./script/run-www-tests $*'
 #lalias cpan='~/bin/cpan.sh $1'
@@ -119,8 +120,9 @@ alias ic='cd ~/iCloudDrive'
 #alias pbpaste='xclip -selection clipboard -o'
 #alias open='gvfs-open $1'
 
-alias ppjson='python -mjson.tool'
-alias ppjson_file='python -mjson.tool $1'
+# XXX: jq replaces this
+#alias ppjson='python -mjson.tool'
+#alias ppjson_file='python -mjson.tool $1'
 
 alias devrepl='re.pl --rcfile ~/.re.pl/bj_dev.rc'
 
@@ -175,3 +177,6 @@ alias ansible-inventory='AWS_PROFILE=legacy ansible-inventory'
 alias ansible-playbook='AWS_PROFILE=legacy ansible-playbook'
 alias ansible-pull='AWS_PROFILE=legacy ansible-pull'
 alias ansible-vault='AWS_PROFILE=legacy ansible-vault'
+
+# Print out PATH dirs
+alias pths="echo $PATH | tr ':' '\n'"
