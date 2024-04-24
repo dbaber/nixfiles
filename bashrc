@@ -85,7 +85,8 @@ fi
 
 # Enable colors globally (Macos only?)
 export CLICOLOR=1
-export LSCOLORS=Exfxcxdxbxegedabagacad
+#export LSCOLORS=Exfxcxdxbxegedabagacad
+export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Tell grep to highlight matches
 #export GREP_OPTIONS='--color=auto'
@@ -299,9 +300,13 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 # Ruby irb - Turn off autocomplete
 export IRB_USE_AUTOCOMPLETE=false
 
+# XXX: Got my MacBook keyboard repaired but in case I ever want to remember how to remap keys:
 # Remap capslock to 'n' key
 #hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000011}]}' >/dev/null 2>&1
 
 # Created by `pipx` on 2024-02-10 15:34:43
 export PATH="$PATH:$HOME/.local/bin"
 eval "$(register-python-argcomplete pipx)"
+
+# Dracula
+#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
