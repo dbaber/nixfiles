@@ -12,11 +12,11 @@ endif
 """ VIM Plugins """
 call plug#begin()
 
-" FZF - fuzzy finder
+" fzf - command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" PLantUML
+" PLantUML - UML diagrams as code
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'aklt/plantuml-syntax'
@@ -24,7 +24,7 @@ Plug 'aklt/plantuml-syntax'
 " Slimv - Lisp in Vim
 Plug 'kovisoft/slimv'
 
-" Cucumber syntax for VIM
+" Cucumber syntax for VIM - BDD
 Plug 'tpope/vim-cucumber'
 
 " Elixir
@@ -42,6 +42,13 @@ Plug 'xavierchow/vim-swagger-preview'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
+
+" Python
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'smbl64/vim-black-macchiato'
+
+" Commentary
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -146,9 +153,9 @@ imap <F2> <C-O>:set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 " Mappings/key bindings for fix-tables
-"au BufNewFile,BufRead *.www set ft=flexwiki equalprg=~/src/blackjack/script/fix-tables
-"au BufNewFile,BufRead *.www set ft=stwiki equalprg=~/src/blackjack/script/fix-tables
-"au BufNewFile,BufRead *.www map <c-J> mq=ip`q
+au BufNewFile,BufRead *.www set ft=flexwiki equalprg=~/src/blackjack/script/fix-tables
+au BufNewFile,BufRead *.www set ft=stwiki equalprg=~/src/blackjack/script/fix-tables
+au BufNewFile,BufRead *.www map <c-J> mq=ip`q
 
 " Format JSON
 "map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
@@ -183,7 +190,7 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 " Trim trailing white space before write
-autocmd FileType vimrc,perl,c,cpp,python,ruby,java,elixir autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType vimrc,perl,python,ruby,elixir,terraform autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Perl key bindings
 "map <F5> :setlocal makeprg=perl\ -c\ %\|make<CR>
@@ -191,8 +198,8 @@ autocmd FileType vimrc,perl,c,cpp,python,ruby,java,elixir autocmd BufWritePre <b
 ":au Filetype perl nmap ,c :!perl -Ilib -c %<CR>:!podchecker %<CR>:!perlcritic --profile `git rev-parse --show-toplevel`/perlcriticrc %<CR>
 ":au Filetype perl nmap ,c :!perl -Ilib -c %<CR>:!podchecker %<CR>:!perlcritic %<CR>
 
-:au Filetype perl nmap ,c :!~/src/scripts/dc_wrapper.sh "perl -Ilib -c %"<CR>:!plx podchecker %<CR>:!plx perlcritic %<CR>
-":au Filetype perl nmap ,c :!plx perl -Ilib -c %<CR>:!plx podchecker %<CR>:!plx perlcritic %<CR>
+":au Filetype perl nmap ,c :!~/src/scripts/dc_wrapper.sh "perl -Ilib -c %"<CR>:!plx podchecker %<CR>:!plx perlcritic %<CR>
+:au Filetype perl nmap ,c :!plx perl -Ilib -c %<CR>:!plx podchecker %<CR>:!plx perlcritic %<CR>
 :au Filetype perl nmap ,r :!plx perl -Ilib %<CR>
 
 " Tidy selected lines (or entire file) with ,t:
@@ -218,14 +225,22 @@ autocmd FileType vimrc,perl,c,cpp,python,ruby,java,elixir autocmd BufWritePre <b
 " Validate XML files with <leader>v using xmllint
 :au Filetype xml nmap ,v :!xmllint --relaxng ~/src/cadillac/lib/Cadillac/Devel/Doc/internal/schema.rng %<CR>
 
-" Wrap git comments to 72 chracters
-au FileType gitcommit set tw=72
+" Wrap git comments to 100 characters, updated per:
+" https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits
+au FileType gitcommit set tw=100
 
 " Python key bindings
-:au Filetype python nnoremap ,t :let t = winsaveview()<CR>:%!autopep8 -<CR>:w<CR>:call winrestview(t)<CR>
-:au Filetype python vnoremap ,t <esc>:'<,'>!autopep8 -<CR>:w<CR>
-":au Filetype python nmap ,c :!flake8 --config `git rev-parse --show-toplevel`/tox.ini --statistics --count %<CR>
-:au Filetype python nmap ,c :!flake8 --config './tox.ini' --statistics --count %<CR>
+":au Filetype python nnoremap ,t :let t = winsaveview()<CR>:%!autopep8 -<CR>:w<CR>:call winrestview(t)<CR>
+":au Filetype python vnoremap ,t <esc>:'<,'>!autopep8 -<CR>:w<CR>
+"":au Filetype python nmap ,c :!flake8 --config `git rev-parse --show-toplevel`/tox.ini --statistics --count %<CR>
+":au Filetype python nmap ,c :!flake8 --config './tox.ini' --statistics --count %<CR>
+
+":au Filetype python nnoremap <leader>t :let t = winsaveview()<CR>:Black<CR>:w<CR>:call winrestview(t)<CR>
+:au Filetype python nnoremap <leader>t :Black<CR>
+":au FileType python xmap <buffer> <Leader>ts <plug>(BlackMacchiatoSelection)
+":au FileType python nmap <buffer> <Leader>ts<plug>(BlackMacchiatoCurrentLine)
+autocmd FileType python xmap <buffer> <Leader>f <plug>(BlackMacchiatoSelection)
+autocmd FileType python nmap <buffer> <Leader>f <plug>(BlackMacchiatoCurrentLine)
 
 " Elixir key bindings
 " autocmd FileType elixir setlocal equalprg=mix\ format\ -
@@ -242,8 +257,8 @@ nnoremap <leader>pb :%w !pbcopy<CR>
 vnoremap <leader>pb <esc>:'<,'>:w !pbcopy<CR>
 
 " Comment/uncomment blocks
-vnoremap <leader>cb :s/^/#/gi<CR>:noh<CR>
-vnoremap <leader>ub :s/^#//gi<CR>:noh<CR>
+"vnoremap <leader>cb :s/^/#/gi<CR>:noh<CR>
+"vnoremap <leader>ub :s/^#//gi<CR>:noh<CR>
 
 " fzf
 noremap <silent> <leader>o :Files<CR>
