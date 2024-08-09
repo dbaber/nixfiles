@@ -166,6 +166,8 @@ autocmd FileType json set expandtab
 
 autocmd FileType sql set expandtab
 
+autocmd FileType plantuml set expandtab
+
 autocmd FileType javascript setlocal ts=2 sw=2 expandtab
 
 " Have vim use the X clipboard - aschrab
