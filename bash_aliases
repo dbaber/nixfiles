@@ -87,6 +87,13 @@ alias lxasst='. ~/venvs/lx_assistant/bin/activate && cd ~/src/lx_assistant'
 alias lxpay='. ~/vens/lx_pay/bin/activate && cd ~/src/lx_pay'
 alias plutus='cd ~/src/plutus && source .venv/bin/activate'
 
+# LenderX, LLC - EPC
+#alias epcui='cd ~/src/epc-frontend && nvm use v22.16.0'
+alias hermes='cd ~/src/epc-frontend && nvm use v24.8.0'
+alias epcbe='cd ~/src/epc-backend && source .venv/bin/activate'
+alias epcpoc='cd ~/src/epc-poc'
+alias epcdd='cd ~/src/epcdockerdev'
+
 #alias runwww='cd ~/src/blackjack && BLACKJACK_RUNNING=1 ./script/run-www-tests $*'
 #lalias cpan='~/bin/cpan.sh $1'
 #alias qctst='cd ~/src/blackjack/t/Blackjack/RuleEngine/data/streetlinks_test_files'
@@ -135,11 +142,12 @@ alias glol='git log --pretty=oneline'
 alias glop='git log -p -1'
 alias gci='git commit --verbose'
 alias gup='git pull --rebase'
+alias gtags='git tag -l --sort=-taggerdate --format="%(align:left,12)%(refname:strip=2)%(end) %(align:left,45)%(taggername) %(taggeremail)%(end) %(align:left,28)%(taggerdate:iso)%(end) %(align:left,10)%(objectname:short)->%(*objectname:short)%(end) %(align:left,8)%(objecttype)%(end) %(subject)"'
 
 alias prove='ADDRESSPLUS_APIKEY=WS36-TCQ1-DOA2 prove'
 
 # Docker aliases
-alias dc=docker-compose
+alias dc='docker compose'
 alias dcpsa="docker compose ps -a --format 'table {{.Name}}\t{{.Image}}\t{{.Service}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'"
 
 alias utc-iso='gdate -u +%Y-%m-%dT"%T.%6NZ"'
@@ -159,7 +167,7 @@ alias egon='open ~/bin/domain-story-modeler-1.5.0/index.html'
 
 # Command-line Markdown viewers
 alias fm='frogmouth'
-alias gl='glow -s dark -p'
+alias gl='glow -s dark -p -w 120'
 
 # Python Poetry deps manager
 alias pty=poetry
@@ -177,6 +185,3 @@ alias ansible-inventory='AWS_PROFILE=legacy ansible-inventory'
 alias ansible-playbook='AWS_PROFILE=legacy ansible-playbook'
 alias ansible-pull='AWS_PROFILE=legacy ansible-pull'
 alias ansible-vault='AWS_PROFILE=legacy ansible-vault'
-
-# Print out PATH dirs
-alias pths="echo $PATH | tr ':' '\n'"

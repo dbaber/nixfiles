@@ -303,10 +303,25 @@ export IRB_USE_AUTOCOMPLETE=false
 # XXX: Got my MacBook keyboard repaired but in case I ever want to remember how to remap keys:
 # Remap capslock to 'n' key
 #hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000011}]}' >/dev/null 2>&1
+#
+# Map left function key to left ctl key for new macos-ish keyboard by Vvandii
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' >/dev/null 2>&1
 
 # Created by `pipx` on 2024-02-10 15:34:43
 export PATH="$PATH:$HOME/.local/bin"
-eval "$(register-python-argcomplete pipx)"
+#eval "$(register-python-argcomplete pipx)"
 
 # Dracula
 #export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+
+# Put libpq in the PATH for psql, pg_FOO, et. al.
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# Decode a JWT
+jwt-decode() {
+  jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)' <<< $1
+}
+
+pths() {
+	echo $PATH | tr ':' '\n'
+}
